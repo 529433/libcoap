@@ -21,7 +21,8 @@ SYNOPSIS
 --------
 *coap-server* [*-d* max] [*-e*] [*-g* group] [*-G* group_if] [*-l* loss]
               [*-p* port] [-r] [*-v* num] [*-A* address] [*-L* value] [*-N*]
-              [*-P* scheme://addr[:port],[name1[,name2..]]] [*-X* size]
+              [*-P* scheme://addr[:port],[name1[,name2..]]]
+              [*-T* max_token_size] [*-X* size]
               [[*-h* hint] [*-i* match_identity_file] [*-k* key]
               [*-s* match_psk_sni_file] [*-u* user]]
               [[*-c* certfile] [*-j* keyfile] [*-n*] [*-C* cafile]
@@ -104,6 +105,9 @@ OPTIONS - General
    scheme://address[:port] is not defined before the leading , (comma) of the
    first name, then the ongoing connection will be a direct connection.
    Scheme is one of coap, coaps, coap+tcp and coaps+tcp.
+
+*-T* max_token_size::
+   Set the maximum token length (8-65804).
 
 *-X* size::
    Maximum message size to use for TCP based connections (default is 8388864).
