@@ -72,6 +72,8 @@ See
 
 "RFC8768: Constrained Application Protocol (CoAP) Hop-Limit Option"
 
+"RFC8974: Extended Tokens and Stateless Clients in the Constrained Application Protocol (CoAP)"
+
 "RFC9175: CoAP: Echo, Request-Tag, and Token Processing"
 
 for further information.

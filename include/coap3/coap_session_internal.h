@@ -43,6 +43,15 @@ struct coap_addr_hash_t {
 };
 
 /**
+ * coap_ext_token_check_t values
+ */
+typedef enum coap_ext_token_check_t {
+  COAP_EXT_T_NOT_CHECKED = 0, /**< Not checked */
+  COAP_EXT_T_CHECKED,         /**< Token size valid */
+  COAP_EXT_T_CHECKING,        /**< Token size check request sent */
+} coap_ext_token_check_t;
+
+/**
  * Abstraction of virtual session that can be attached to coap_context_t
  * (client) or coap_endpoint_t (server).
  */
@@ -139,6 +148,7 @@ struct coap_session_t {
   unsigned int dtls_timeout_count;      /**< dtls setup retry counter */
   int dtls_event;                       /**< Tracking any (D)TLS events on this
                                              sesison */
+  uint32_t tx_rtag;               /**< Next Request-Tag number to use */
   uint8_t csm_bert_rem_support;  /**< CSM TCP BERT blocks supported (remote) */
   uint8_t csm_bert_loc_support;  /**< CSM TCP BERT blocks supported (local) */
   uint8_t block_mode;             /**< Zero or more COAP_BLOCK_ or'd options */
@@ -147,7 +157,11 @@ struct coap_session_t {
   uint8_t delay_recursive;        /**< Set if in coap_client_delay_first() */
   uint8_t no_observe_cancel;      /**< Set if do not cancel observe on session
                                        close */
-  uint32_t tx_rtag;               /**< Next Request-Tag number to use */
+  volatile uint8_t max_token_checked; /**< Check for max token size
+                                           coap_ext_token_check_t */
+  uint16_t max_token_mid;         /**< mid used for checking ext token
+                                       support */
+  uint32_t max_token_size;        /**< Largest token size supported RFC8974 */
   uint64_t tx_token;              /**< Next token number to use */
   coap_bin_const_t *last_token;   /** last token used to make a request */
   coap_bin_const_t *echo;         /**< Echo value to send with next request */

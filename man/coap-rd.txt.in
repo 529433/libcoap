@@ -20,6 +20,7 @@ coap-rd-notls
 SYNOPSIS
 --------
 *coap-rd* [*-g* group] [*-G* group_if] [*-p* port] [*-v* num] [*-A* address]
+          [*-T* max_token_size]
           [[*-h* hint] [*-k* key]]
           [[*-c* certfile] [*-n*] [*-C* cafile] [*-R* trusted_casfile]]
 
@@ -55,6 +56,9 @@ OPTIONS
 
 *-A* address::
    The local address of the interface which the server has to listen on.
+
+*-T* max_token_size::
+   Set the maximum token length (8-65804).
 
 OPTIONS - PSK
 -------------
